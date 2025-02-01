@@ -11,9 +11,9 @@ services:
     ports:
       - 5198:80
     volumes:
-      - gs:/root/.gaseous-server
+      - /srv/datastore/docker/gs:/root/.gaseous-server
     environment:
-      - TZ=Australia/Sydney
+      - TZ=America/Toronto
       - dbhost=gsdb
       - dbuser=root
       - dbpass=gaseous
@@ -26,7 +26,7 @@ services:
     networks:
       - gaseous
     volumes:
-      - gsdb:/var/lib/mysql
+      - /srv/datastore/docker/gs/gsdb:/var/lib/mysql
     environment:
       - MARIADB_ROOT_PASSWORD=gaseous
       - MARIADB_USER=gaseous
@@ -34,6 +34,3 @@ services:
 networks:
   gaseous:
     driver: bridge
-volumes:
-  gs:
-  gsdb:
